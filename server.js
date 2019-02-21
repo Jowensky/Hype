@@ -5,7 +5,7 @@ var logger = require("morgan");
 const cors = require('cors')
 const mongoose = require("mongoose");
 
-const router = require("./routes");
+// const router = require("./routes");
 
 const PORT = process.env.PORT || 3001;
 
@@ -20,14 +20,14 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-app.use(router);
+// app.use(router);
 
 app.get("*", function(req,res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/Books", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/hype", { useNewUrlParser: true });
 
 // Start the API server
 app.listen(PORT, function() {
